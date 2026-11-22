@@ -1,8 +1,8 @@
 # ros_distro -- ROS 1 Multi-distro Docker Environment
 
-[![CI](https://github.com/ycpss91255-docker/ros_distro/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-docker/ros_distro/actions/workflows/main.yaml) [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](./LICENSE)
+[![CI](https://github.com/ycpss91255-lab/ros_distro/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-lab/ros_distro/actions/workflows/main.yaml) [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](./LICENSE)
 
-[![CI](https://github.com/ycpss91255-docker/ros_distro/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-docker/ros_distro/actions/workflows/main.yaml)
+[![CI](https://github.com/ycpss91255-lab/ros_distro/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-lab/ros_distro/actions/workflows/main.yaml)
 
 One-command ROS 1 containerized dev environment. Single Dockerfile, single `BASE_IMAGE` ARG to switch between Noetic / Kinetic and `ros:` (headless) / `osrf/ros:` (desktop / desktop-full) at build time.
 
@@ -56,7 +56,7 @@ at once. Default is `osrf/ros:noetic-desktop-full-focal`; CI exercises a
 - **Smoke Test**: Bats tests run automatically during build; distro- and variant-agnostic (GUI-tool tests skip cleanly on `ros-base` / `ros-core`).
 - **Docker Compose**: single `compose.yaml` manages all targets.
 - **Auto-detection**: `setup.sh` auto-detects UID/GID/workspace, generates `.env`.
-- **Modular config**: shell config managed via [template](https://github.com/ycpss91255-docker/base) subtree.
+- **Modular config**: shell config managed via [template](https://github.com/ycpss91255-lab/base) subtree.
 - **X11 forwarding**: supports GUI applications when using a desktop variant.
 
 > **Note**: `osrf/ros:*` variants ship amd64 binaries only. For arm64 (Jetson, Raspberry Pi), pick a `ros:` variant — that registry publishes both architectures.
@@ -163,7 +163,7 @@ This repo can be embedded into another project via `git subtree`, letting the pr
 
 ```bash
 git subtree add --prefix=docker/osrf_ros_noetic \
-    https://github.com/ycpss91255-docker/osrf_ros_noetic.git main --squash
+    https://github.com/ycpss91255-lab/osrf_ros_noetic.git main --squash
 ```
 
 Example directory structure after adding:
@@ -207,7 +207,7 @@ When the subtree sits at `my_robot_project/docker/osrf_ros_noetic/`:
 
 ```bash
 git subtree pull --prefix=docker/osrf_ros_noetic \
-    https://github.com/ycpss91255-docker/osrf_ros_noetic.git main --squash
+    https://github.com/ycpss91255-lab/osrf_ros_noetic.git main --squash
 ```
 
 > **Notes**:
@@ -410,5 +410,5 @@ ros_distro/
 
 ```bash
 git subtree pull --prefix=template \
-    https://github.com/ycpss91255-docker/base.git v1.4.0 --squash
+    https://github.com/ycpss91255-lab/base.git v1.4.0 --squash
 ```

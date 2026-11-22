@@ -18,7 +18,7 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - **`call-publish` job in `main.yaml`**: opts into template v0.20.0's
   new `publish-worker.yaml` reusable workflow (template#232 / template#233).
   On tag push, each of the 4 matrix variants publishes a Docker image
-  to `ghcr.io/ycpss91255-docker/ros_distro:<tag>-<entry-name>`, and the
+  to `ghcr.io/ycpss91255-lab/ros_distro:<tag>-<entry-name>`, and the
   default variant (`noetic-desktop-full`) additionally publishes
   `:latest-noetic-desktop-full`. Auth via GITHUB_TOKEN (no extra
   secrets); `target: devel`.
