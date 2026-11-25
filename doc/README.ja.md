@@ -1,6 +1,6 @@
 # ros_distro -- ROS 1 マルチ distro Docker 環境
 
-[![CI](https://github.com/ycpss91255-docker/ros_distro/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-docker/ros_distro/actions/workflows/main.yaml) [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](../LICENSE)
+[![CI](https://github.com/ycpss91255-lab/ros_distro/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-lab/ros_distro/actions/workflows/main.yaml) [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](../LICENSE)
 
 **[English](../README.md)** | **[繁體中文](README.zh-TW.md)** | **[简体中文](README.zh-CN.md)** | **[日本語](README.ja.md)**
 
@@ -42,10 +42,10 @@
 - **Smoke Test**：ビルド時に Bats テストを自動実行し環境の正確性を検証
 - **Docker Compose**：1 つの `compose.yaml` で全 target を管理
 - **自動検出**：`setup.sh` が UID/GID/workspace を自動検出し `.env` を生成
-- **モジュール化設定**：shell config は [template](https://github.com/ycpss91255-docker/base) subtree で管理
+- **モジュール化設定**：shell config は [template](https://github.com/ycpss91255-lab/base) subtree で管理
 - **X11 転送**：GUI アプリケーション対応（RViz、Terminator 等）
 
-> **注意**：このイメージは `osrf/ros` を使用しており、**x86_64** のみ対応。ARM/Raspberry Pi が必要な場合は [ros_noetic](https://github.com/ycpss91255-docker/ros_noetic) をご利用ください。
+> **注意**：このイメージは `osrf/ros` を使用しており、**x86_64** のみ対応。ARM/Raspberry Pi が必要な場合は [ros_noetic](https://github.com/ycpss91255-lab/ros_noetic) をご利用ください。
 
 ## クイックスタート
 
@@ -114,7 +114,7 @@ docker compose --profile runtime run --rm runtime
 
 ```bash
 git subtree add --prefix=docker/osrf_ros_noetic \
-    https://github.com/ycpss91255-docker/osrf_ros_noetic.git main --squash
+    https://github.com/ycpss91255-lab/osrf_ros_noetic.git main --squash
 ```
 
 追加後のディレクトリ構成例：
@@ -158,7 +158,7 @@ subtree が `my_robot_project/docker/osrf_ros_noetic/` にある場合：
 
 ```bash
 git subtree pull --prefix=docker/osrf_ros_noetic \
-    https://github.com/ycpss91255-docker/osrf_ros_noetic.git main --squash
+    https://github.com/ycpss91255-lab/osrf_ros_noetic.git main --squash
 ```
 
 > **注意事項**：
@@ -320,5 +320,5 @@ osrf_ros_noetic/
 
 ```bash
 git subtree pull --prefix=template \
-    https://github.com/ycpss91255-docker/base.git v1.4.0 --squash
+    https://github.com/ycpss91255-lab/base.git v1.4.0 --squash
 ```

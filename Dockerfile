@@ -134,7 +134,7 @@ ARG USER
 ARG GROUP
 ARG ENTRYPOINT_FILE="script/entrypoint.sh"
 ARG CONFIG_DIR="/tmp/config"
-# <repo>/config is a per-repo copy of .base/config seeded by init.sh.
+# <repo>/config is a per-repo copy of .base/dist/config seeded by init.sh.
 # Edit files there freely; template upgrades do not touch this directory.
 ARG CONFIG_SRC="config"
 
@@ -178,6 +178,7 @@ FROM ${TEST_TOOLS_IMAGE} AS test-tools-stage
 
 FROM devel AS devel-test
 
+# hadolint ignore=DL3066
 USER root
 
 # Lint tools (from pre-built test-tools image; see TEST_TOOLS_IMAGE at top)
@@ -188,7 +189,7 @@ COPY --from=test-tools-stage /usr/local/bin/hadolint /usr/local/bin/hadolint
 COPY .hadolint.yaml /lint/.hadolint.yaml
 COPY Dockerfile /lint/Dockerfile
 COPY script/*.sh /lint/
-COPY .base/script/docker/lib /lint/lib
+COPY .base/dist/script/docker/lib /lint/lib
 RUN shellcheck -S warning /lint/*.sh /lint/lib/*.sh
 WORKDIR /lint
 RUN hadolint Dockerfile
@@ -201,8 +202,10 @@ RUN ln -sf /opt/bats/bin/bats /usr/local/bin/bats
 ENV BATS_LIB_PATH="/usr/lib/bats"
 
 # Smoke test (shared tests from template + repo-specific tests)
-COPY .base/test/smoke/ /smoke_test/
-COPY test/smoke/ /smoke_test/
+COPY .base/dist/test/bats/smoke/shared/ /smoke_test/
+COPY .base/dist/test/bats/smoke/devel-test/ /smoke_test/
+COPY test/bats/smoke/shared/ /smoke_test/
+COPY test/bats/smoke/devel-test/ /smoke_test/
 
 ARG USER
 USER "${USER}"
@@ -235,6 +238,7 @@ FROM devel AS build
 ARG USER
 ARG GROUP
 
+# hadolint ignore=DL3066
 USER root
 RUN mkdir -p /opt/ros/install && \
     chown -R "${USER}":"${GROUP}" /opt/ros/install
