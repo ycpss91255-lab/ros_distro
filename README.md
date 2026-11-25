@@ -103,16 +103,17 @@ ARGs in sync.
 
 ### Persisting the override
 
-Either pass `--build-arg` per `./build.sh` invocation, or persist the
-override in `setup.conf` so subsequent builds pick it up automatically:
+Either pass `--build-arg` per `just docker build` invocation, or persist the
+override in `setup.toml` so subsequent builds pick it up automatically:
 
-```ini
-[build]
-arg_4 = BASE_IMAGE=ros:noetic-ros-base-focal
+```toml
+[[build.args]]
+key = "BASE_IMAGE"
+value = "ros:noetic-ros-base-focal"
 ```
 
-The `[build] arg_*` slots flow into `compose.yaml`'s `build.args` via
-`setup.sh`. Use the TUI editor to manage them: `./setup_tui.sh build`.
+The `[[build.args]]` entries flow into `compose.yaml`'s `build.args` via
+`setup.sh`. Use the TUI editor to manage them: `just docker setup-tui`.
 
 ## Usage
 
@@ -390,7 +391,7 @@ ros_distro/
 ├── Makefile -> .base/script/docker/Makefile   # Symlink
 ├── .env.example                              # IMAGE_NAME fallback
 ├── .hadolint.yaml                            # Hadolint ignore rules
-├── setup.conf                                # Repo override (selects BASE_IMAGE etc.)
+├── setup.toml                                # Repo override (selects BASE_IMAGE etc.)
 ├── script/
 │   └── entrypoint.sh                         # Container entrypoint
 ├── doc/                                      # Translated READMEs + TEST + CHANGELOG
