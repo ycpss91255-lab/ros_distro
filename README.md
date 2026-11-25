@@ -103,8 +103,7 @@ ARGs in sync.
 
 ### Persisting the override
 
-Either pass `--build-arg` per `just docker build` invocation, or persist the
-override in `setup.toml` so subsequent builds pick it up automatically:
+Persist the override in `setup.toml` so every build picks it up:
 
 ```toml
 [[build.args]]
